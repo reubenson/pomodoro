@@ -19,9 +19,9 @@ angular.module('pomodoroApp.services', [])
   return pomodoro;
 })
 
-.factory("Todo", function($resource) {
+.factory("Todo", ['$resource', function($resource) {
   return $resource("/api/todos/:id", {  }, {
     query: { method: "GET", isArray: false},
     update: { method: "PUT" }
   });
-});
+}]);
