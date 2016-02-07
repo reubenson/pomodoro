@@ -3,7 +3,7 @@ class Api::TodosController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def index
-    render json: current_user.todos
+    render json: current_user.todos.order(:id)
   end
 
   def show
@@ -31,14 +31,7 @@ class Api::TodosController < ApplicationController
 
   def destroy
     @todo.destroy
-    render json: current_user.todos
-  end
-
-  def increment_pomodoro
-    @todo = Todo.find(params[:todo_id])
-    @todo.n_pomodoros += 1
-    @todo.save
-    render json: @todo
+    render json: current_user.todos.order(:id)
   end
 
   private
