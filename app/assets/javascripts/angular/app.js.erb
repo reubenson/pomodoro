@@ -1,0 +1,66 @@
+pomodoroApp = angular.module('pomodoroApp',['ngResource','pomodoroApp.services'])
+.controller('TodoController', function($scope, pomodoro, Todo, $interval){
+  var TodoCtrl = this;
+
+  Todo.query(function(data){
+    $scope.todos = data.todos;
+  })
+
+  TodoCtrl.createTodo = function() {
+    Todo.save({title: this.todoTitle}, function(data){
+      $scope.todos = data.todos;
+      TodoCtrl.showTodo($scope.todos[$scope.todos.length-1]);
+    })
+    this.todoTitle = "";
+  };
+
+  TodoCtrl.deleteTodo = function(id,$event) {
+    $event.stopPropagation();
+    Todo.delete({id: id}, function(data){
+      $scope.todos = data.todos;
+    })
+  };
+
+  TodoCtrl.showTodo = function(todo) {
+    $scope.todo = todo;
+    $scope.showTodo = true;
+    Todo.get({id: todo.id}, function(data){
+      $scope.todo.n_pomodoros = data.todo.n_pomodoros;
+    })
+  }
+
+  TodoCtrl.editTodo = function() {
+    $scope.todoWithEdit = true;
+  }
+
+  TodoCtrl.updateTodo = function() {
+    $scope.todo.title = $scope.updateTitle;
+    Todo.update({id: $scope.todo.id}, $scope.todo);
+    $scope.todoWithEdit = false;
+  }
+
+  $scope.minutes = function(){
+    return parseInt(pomodoro.time/60);
+  };
+
+  $scope.seconds = function(){
+    var seconds = parseInt(pomodoro.time%60);
+    if (seconds < 10) {seconds = '0'+seconds; }
+    return seconds;
+  };
+
+  TodoCtrl.startPomodoro = function() {
+    $scope.showButton = false;
+    $scope.breakMsg = false;
+    var timer = $interval(pomodoro.updateTimer,1000);
+    pomodoro.callback = function() {
+      alert("Your pomodoro is over!")
+      $interval.cancel(timer);
+      pomodoro.reset();
+      $scope.todo.n_pomodoros++;
+      Todo.update({id: $scope.todo.id}, $scope.todo);
+      $scope.showButton = true;
+      $scope.breakMsg = true;
+    };
+  };
+})

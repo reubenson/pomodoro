@@ -1,0 +1,23 @@
+<div class="new-user-form">
+  <div class="new-user-background"></div>
+    <%= form_tag("/sessions", method: :post) do |f| %>
+
+      <div class="form-group">
+        <%= label_tag :email_address %><br>
+        <%= text_field_tag :email_address, "", class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= label_tag :password %><br>
+        <%= password_field_tag :password, "", class: "form-control" %>
+      </div>
+
+      <div>
+        <%= submit_tag 'Log In', :class => "btn" %>
+      </div>
+
+      <div id="notice"><%= notice %></div>
+      
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,111 @@
+body {
+  width: 100vw;
+  height: 100vh;
+  padding: 0px;
+  margin: 0px;
+  background-image: url(<%= asset_path('tomatoes.jpg')%>);
+  background-size: cover;
+  overflow: hidden;
+  font-family: Karla, serif;
+}
+
+.navbar-default {
+  background-color: transparent;
+}
+
+.navbar-default .navbar-brand,
+.navbar-default .navbar-nav>li>a {
+  color: white;
+  font-size: 1.5em;
+  text-decoration: none;
+}
+
+nav a {
+  float: right;
+  margin-right: 10px;
+}
+
+.homepage h2 {
+  height: 100%;
+  width: 100%;
+  margin-top: 10%;
+  font-size: 10em;
+  font-weight: 700;
+  line-height: 1em;
+  color: white;
+  text-shadow: 5px 1px black;
+  text-align: center;
+}
+
+.homepage h4 {
+  width: 70%;
+  margin: auto;
+  font-weight: 400;
+  font-size: 2em;
+  color: white;
+  text-align: justify;
+  letter-spacing: 0.1em;
+}
+
+.pomodoro-list {
+  margin: auto;
+  padding: 10px;
+  background-color: white;
+  opacity: 0.9;
+  border: solid black 4px;
+}
+
+.pomodoro-list h2, form {
+  text-align: center;
+}
+
+.delete-item {
+  float: right;
+}
+
+.pomodoro-detail {
+  margin: auto;
+  padding: 10px;
+  text-align: center;
+  background-color: white;
+  opacity: 0.9;
+  border: solid black 4px;
+}
+
+.pomodoro-detail h2,
+.pomodoro-list h2 {
+  text-align: center;
+  width: 80%;
+  padding-bottom: 5px;
+  margin: 0px auto 5px auto;
+  border-bottom: solid black 2px;
+}
+
+.new-user-form {
+  width: 400px;
+  margin: auto;
+}
+
+.new-user-form form {
+  padding: 10px;
+}
+
+.form-group {
+  font-size: 1.2em;
+  text-align: left;
+  margin-bottom: 8px;
+}
+
+.new-user-background {
+  position: absolute;
+  width: 400px;
+  height: 350px;
+  background-color: white;
+  opacity: 0.8;
+  z-index: -1;
+  border: solid black 4px;
+}
+
+.timer {
+  font-size: 2em;
+}
