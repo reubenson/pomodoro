@@ -1,5 +1,5 @@
 pomodoroApp = angular.module('pomodoroApp',['ngResource','pomodoroApp.services'])
-.controller('TodoController', function($scope, pomodoro, Todo, $interval){
+.controller('TodoController', ['$scope', 'pomodoro', 'Todo', '$interval', function($scope, pomodoro, Todo, $interval){
   var TodoCtrl = this;
 
   Todo.query(function(data){
@@ -63,4 +63,4 @@ pomodoroApp = angular.module('pomodoroApp',['ngResource','pomodoroApp.services']
       $scope.breakMsg = true;
     };
   };
-})
+}]);
